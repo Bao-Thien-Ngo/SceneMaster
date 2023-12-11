@@ -1,0 +1,67 @@
+# Create a function to load and prep base64-encoded image
+# def load_and_prep_image(encoded_content, img_shape=224, rescale=False):
+#     # Decode the base64-encoded content
+#     decoded_content = base64.b64decode(encoded_content)
+#
+#     # Convert the decoded binary data to a TensorFlow tensor
+#     img = tf.io.decode_image(decoded_content, channels=3)
+#
+#     # Resize the image
+#     img = tf.image.resize(img, [img_shape, img_shape])
+#
+#     # Rescale the image (get all values between 0 and 1)
+#     if rescale:
+#         return img / 255.
+#     else:
+#         return img
+#
+#
+# from google.cloud import aiplatform
+# from google.cloud.aiplatform.gapic.schema import predict
+#
+#
+# def predict_image_classification_sample(
+#         project: str,
+#         endpoint_id: str,
+#         filename,
+#         location: str = "us-central1",
+#         api_endpoint: str = "us-central1-aiplatform.googleapis.com",
+# ):
+#     # The AI Platform services require regional API endpoints.
+#     client_options = {"api_endpoint": api_endpoint}
+#     # Initialize client that will be used to create and send requests.
+#     # This client only needs to be created once, and can be reused for multiple requests.
+#     client = aiplatform.gapic.PredictionServiceClient(client_options=client_options)
+#     # encoded_content = base64.b64encode(filename).decode("utf-8")
+#
+#     # The format of each instance should conform to the deployed model's prediction input schema.
+#     instance = predict.instance.ImageClassificationPredictionInstance(
+#         content=filename,
+#     ).to_value()
+#     instances = [instance]
+#
+#     parameters = predict.params.ImageClassificationPredictionParams(
+#         confidence_threshold=0.5,
+#         max_predictions=5,
+#     ).to_value()
+#     endpoint = client.endpoint_path(
+#         project=project, location=location, endpoint=endpoint_id
+#     )
+#     print(instances)
+#     response = client.predict(
+#         endpoint=endpoint, instances=instances, parameters=parameters
+#     )
+#     print("response")
+#     print(" deployed_model_id:", response.deployed_model_id)
+#     predictions = response.predictions
+#     for prediction in predictions:
+#         print(" prediction:", dict(prediction))
+
+   # print(type(instances.numpy()))
+    # instance = instances.numpy().tolist()
+    # input_data_json = [instances]#{"signature_name": "serving_default","instances": instance}
+    # #input_data_json = {"instances": [{"input_request": instances}]}
+
+# encoded_content = base64.b64encode(session_state.uploaded_image).decode("utf-8")
+# print(session_state.uploaded_image)
+# encoded_content = base64.b64encode(session_state.uploaded_image).decode("utf-8")
