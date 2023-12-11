@@ -1,2 +1,2 @@
 # SceneMaster
-Build an app to classify scene images and host them on the cloud
+Build an app to classify scene images and host it on the cloud
